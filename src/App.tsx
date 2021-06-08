@@ -1,50 +1,53 @@
 import React, {useState} from 'react';
 import './App.css';
-import {Todolist} from './Todolist';
+import Todolist, {tasksType} from "./Todolist";
+import {v1} from 'uuid';
 
 
-export type keyType =
-    'All' | 'Active' | 'Completed'
-
+export type keyType = 'All' | 'Active' | 'Completed'
 
 function App() {
 
-    let [tasks1, setTasks1] = useState([
-        {id: 1, title: "HTML&CSS", isDone: true},
-        {id: 2, title: "JS", isDone: true},
-        {id: 3, title: "ReactJS", isDone: false},
-        {id: 4, title: "HTML&CSS", isDone: true},
-        {id: 5, title: "JS", isDone: true},
-        {id: 6, title: "ReactJS", isDone: false}
+    let [tasks, setTasks] = useState<tasksType[]>([
+        {id: v1(), title: 'HTML', isDone: true},
+        {id: v1(), title: 'JS', isDone: false},
+        {id: v1(), title: 'TS', isDone: false},
+        {id: v1(), title: 'React', isDone: false},
+        {id: v1(), title: 'CSS', isDone: true},
+        {id: v1(), title: 'Redux', isDone: false}
     ])
-
     let [filter, setFilter] = useState<keyType>('All')
-    const removeTasks = (id: number) => {
-        tasks1 = tasks1.filter(t1 => t1.id !== id)
-        setTasks1(tasks1)
-        console.log(tasks1)
+
+    function removeTask(id: string) {
+        let filteredTasks = tasks.filter(t => t.id !== id)
+        setTasks(filteredTasks);
     }
 
-    const changeFilter = (key: keyType) => {
-        console.log(key)
-        setFilter(key)
+    function changeFilter(key: keyType) {
+        setFilter(key);
     }
 
-    let copyTasks1 = tasks1;
+    function addTask(newTitle:string) {
+        let newTask = {id: v1(), title: newTitle, isDone: false}
+        setTasks([newTask, ...tasks])
+    }
 
+    let copyTasks = tasks;
     if (filter === 'Active') {
-        copyTasks1 = tasks1.filter(t => !t.isDone)
+        copyTasks = copyTasks.filter(t => !t.isDone)
     }
     if (filter === 'Completed') {
-        copyTasks1 = tasks1.filter(t => t.isDone)
+        copyTasks = copyTasks.filter(t => t.isDone)
     }
+
 
     return (
         <div className="App">
             <Todolist
-                title="What to learn"
-                tasks={copyTasks1}
-                removeTasks={removeTasks}
+                title={'What to learn'}
+                tasks={copyTasks}
+                addTask={addTask}
+                removeTask={removeTask}
                 changeFilter={changeFilter}
             />
         </div>
@@ -52,11 +55,6 @@ function App() {
 }
 
 export default App;
-
-
-
-
-
 
 
 
