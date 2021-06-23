@@ -8,7 +8,7 @@
 }
 
 .error {
-  border: red 4px solid;
+  border: red 1px solid;
 }
 
 .error-message {
@@ -22,5 +22,3 @@
 .is-done {
   opacity: 0.5;
 }
-
-
