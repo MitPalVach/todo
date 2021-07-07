@@ -1,4 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import {IconButton, TextField} from "@material-ui/core";
+import {AddBox} from "@material-ui/icons";
 
 
 type AddItemFormType = {
@@ -27,16 +29,25 @@ const AddItemForm: React.FC<AddItemFormType> = (props) => {
         }
         setTitle('')
     }
-
+// Инпут нового тудулиста и новых тасок
     return (
         <div>
-            <input value={title}
-                   onChange={onChangeHandler}
-                   onKeyPress={onKeyPressHandler}
-                   className={error ? 'error' : ''}
-            />
-            <button onClick={addItem}>+</button>
-            {error && <div style={{color: 'red'}}>{errorMessage}</div>}
+            <TextField
+                value={title}
+                label='Title'
+                onChange={onChangeHandler}
+                onKeyPress={onKeyPressHandler}
+                size={"small"}
+                variant={'outlined'}
+                error={error}
+                helperText={error && errorMessage}
+                />
+            {/*Кнопки добавление нового тудулиста и новых тасок*/}
+            <IconButton
+                color={'primary'}
+                onClick={addItem}>
+                <AddBox />
+            </IconButton>
         </div>
     );
 };

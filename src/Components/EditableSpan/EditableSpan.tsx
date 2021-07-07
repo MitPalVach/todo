@@ -1,4 +1,5 @@
 import React, {ChangeEvent, useState} from 'react';
+import {TextField} from "@material-ui/core";
 
 
 type EditableSpanType = {
@@ -18,17 +19,17 @@ const EditableSpan: React.FC<EditableSpanType> = (props) => {
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value)
     }
-
+// Возможность изменить название тасок и тудулистов
     return (
-        editMode ?
-            <input value={title}
-                   onBlur={offEditMode}
-                   autoFocus
-                   onChange={onChangeHandler}
-            />
-            : <span onDoubleClick={onEditMode}
-            >{props.title}</span>
-    );
+        editMode ? (
+                <TextField
+                    autoFocus
+                    value={title}
+                    onBlur={offEditMode}
+                    onChange={onChangeHandler}
+                />)
+            : (<span onDoubleClick={onEditMode}>{props.title}</span>)
+    )
 };
 
 export default EditableSpan;

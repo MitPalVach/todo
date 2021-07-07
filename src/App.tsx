@@ -3,6 +3,8 @@ import './App.css';
 import {TaskType, Todolist} from './Components/Todolist/Todolist'
 import {v1} from 'uuid';
 import AddItemForm from "./Components/AddItemForm/AddItemForm";
+import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@material-ui/core";
+import {Menu} from "@material-ui/icons";
 
 
 export type FilterValuesType = "all" | "active" | "completed";
@@ -106,25 +108,49 @@ function App() {
         }
 
         return (
-            <Todolist
-                todolistID={tl.id}
-                filter={tl.filter}
-                title={tl.title}
-                tasks={tasksForTodolist}
-                addTask={addTask}
-                removeTask={removeTask}
-                changeTodolistFilter={changeTodolistFilter}
-                changeTaskStatus={changeTaskStatus}
-                removeTodolist={removeTodolist}
-                changeTaskTitle={changeTaskTitle}
-                changeTodolistTitle={changeTodolistTitle}
-            />
+            <Grid item key={tl.id}>
+            <Paper style={{padding: '20px'}} elevation={5}>
+                <Todolist
+                    todolistID={tl.id}
+                    filter={tl.filter}
+                    title={tl.title}
+                    tasks={tasksForTodolist}
+                    addTask={addTask}
+                    removeTask={removeTask}
+                    changeTodolistFilter={changeTodolistFilter}
+                    changeTaskStatus={changeTaskStatus}
+                    removeTodolist={removeTodolist}
+                    changeTaskTitle={changeTaskTitle}
+                    changeTodolistTitle={changeTodolistTitle}
+                />
+            </Paper>
+            </Grid>
         )
     })
+    // GUI
     return (
         <div className="App">
-            <AddItemForm addItem={addTodolist}/>
-            {todolistsComponents}
+            <AppBar position="static">
+                <Toolbar style={{justifyContent: 'space-between'}}>
+                    <IconButton edge="start" color="inherit" aria-label="menu">
+                        <Menu/>
+                    </IconButton>
+                    <Typography variant="h6">
+                        Todolists
+                    </Typography>
+                    <Button
+                        variant={'outlined'}
+                        color="inherit">Login</Button>
+                </Toolbar>
+            </AppBar>
+            <Container fixed>
+                <Grid container style={{padding: '20px 0'}}>
+                    <AddItemForm addItem={addTodolist}/>
+                </Grid>
+                <Grid container spacing={5}>
+                    {todolistsComponents}
+                </Grid>
+            </Container>
         </div>
     )
 }

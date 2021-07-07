@@ -2,6 +2,8 @@ import React, {ChangeEvent} from "react";
 import {FilterValuesType} from "../../App";
 import AddItemForm from "../AddItemForm/AddItemForm";
 import EditableSpan from "../EditableSpan/EditableSpan";
+import {Button, Checkbox, IconButton} from "@material-ui/core";
+import {Delete} from "@material-ui/icons";
 
 
 export type TaskType = {
@@ -34,14 +36,21 @@ export function Todolist(props: PropsType) {
     }
     const changeTodolistTitle = (title: string) => props.changeTodolistTitle(title, props.todolistID)
 
-
     return <div>
+        {/* Загаловки тудулистов*/}
         <h3>
             <EditableSpan title={props.title} changeTitle={changeTodolistTitle}/>
-            <button onClick={onClickRemoveTodolist}>x
-            </button>
+            <IconButton
+                onClick={onClickRemoveTodolist}
+                color={'primary'}
+                size={'small'}
+            ><Delete/>
+            </IconButton>
         </h3>
+
+        {/*Инпут ввода новой таски*/}
         <AddItemForm addItem={addTask}/>
+        {/*Имеющиеся таски*/}
         <ul>
             {
                 props.tasks.map(t => {
@@ -52,23 +61,41 @@ export function Todolist(props: PropsType) {
                         props.changeTaskTitle(t.id, title, props.todolistID)
                     }
                     return <li key={t.id} className={t.isDone ? 'is-done' : ''}>
-                        <input type="checkbox" checked={t.isDone} onChange={onChangeTaskStatusHandler}/>
+                        <Checkbox
+                            checked={t.isDone}
+                            color={'primary'}
+                            onChange={onChangeTaskStatusHandler}
+                        />
+
                         <EditableSpan title={t.title} changeTitle={changeTaskTitleHandler}/>
-                        <button onClick={onClickHandler}>x</button>
+                        <IconButton
+                            onClick={onClickHandler}
+                            color={'primary'}
+                            size={'small'}
+                        ><Delete/>
+                        </IconButton>
                     </li>
                 })
             }
         </ul>
+        {/*Кнопки статуса активности тасок*/}
         <div>
-            <button className={props.filter === 'all' ? 'active-filter' : ''}
-                    onClick={onFilterClickHandler('all')}>All
-            </button>
-            <button className={props.filter === 'active' ? 'active-filter' : ''}
-                    onClick={onFilterClickHandler('active')}>Active
-            </button>
-            <button className={props.filter === 'completed' ? 'active-filter' : ''}
-                    onClick={onFilterClickHandler('completed')}>Completed
-            </button>
+            <Button
+                size={'small'}
+                variant={props.filter === 'all' ? 'outlined' : 'contained'}
+                color={props.filter === 'all' ? 'secondary' : 'primary'}
+                onClick={onFilterClickHandler('all')}>All</Button>
+            <Button
+                style={{'margin': '0 5px'}}
+                size={'small'}
+                variant={props.filter === 'active' ? 'outlined' : 'contained'}
+                color={props.filter === 'active' ? 'secondary' : 'primary'}
+                onClick={onFilterClickHandler('active')}>Active</Button>
+            <Button
+                size={'small'}
+                variant={props.filter === 'completed' ? 'outlined' : 'contained'}
+                color={props.filter === 'completed' ? 'secondary' : 'primary'}
+                onClick={onFilterClickHandler('completed')}>Completed</Button>
         </div>
     </div>
 }
