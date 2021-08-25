@@ -22,7 +22,12 @@ export interface changeTodolistFilterAT {
     todolistID: string
 }
 
-const initialState:Array<TodolistType> = []
+export const todolistID_1 = v1()
+export const todolistID_2 = v1()
+const initialState: Array<TodolistType> = [
+    {id: todolistID_1, title: 'Список фильмов', filter: 'all'},
+    {id: todolistID_2, title: 'Покупки', filter: 'all'},
+]
 export type ActionsType =
     RemoveTodolistsAT | AddTodolistAT |
     changeTodolistTitleAT | changeTodolistFilterAT
