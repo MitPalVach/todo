@@ -91,11 +91,11 @@ function AppWithReducer() {
                         <Menu/>
                     </IconButton>
                     <Typography variant="h6">
-                        Todolists
+                        Списки
                     </Typography>
                     <Button
                         variant={'outlined'}
-                        color="inherit">Login</Button>
+                        color="inherit">Войти</Button>
                 </Toolbar>
             </AppBar>
             <Container fixed>

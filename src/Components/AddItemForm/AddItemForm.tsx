@@ -34,7 +34,7 @@ const AddItemForm: React.FC<AddItemFormType> = (props) => {
         <div>
             <TextField
                 value={title}
-                label='Title'
+                label='Введите значение'
                 onChange={onChangeHandler}
                 onKeyPress={onKeyPressHandler}
                 size={"small"}

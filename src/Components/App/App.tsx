@@ -5,6 +5,7 @@ import {v1} from 'uuid';
 import AddItemForm from "../AddItemForm/AddItemForm";
 import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@material-ui/core";
 import {Menu} from "@material-ui/icons";
+import {todolistID_1, todolistID_2} from "../../store/todolistReducer";
 
 
 export type FilterValuesType = "all" | "active" | "completed";
@@ -21,25 +22,26 @@ function App() {
     const todolistID_1 = v1()
     const todolistID_2 = v1()
     const [todolist, setTodolist] = useState<Array<TodolistType>>([
-        {id: todolistID_1, title: 'what to learn', filter: 'all'},
-        {id: todolistID_2, title: 'what to buy', filter: 'all'}
+        {id: todolistID_1, title: 'Список фильмов', filter: 'all'},
+        {id: todolistID_2, title: 'Покупки', filter: 'all'},
     ])
 
     const [tasks, setTasks] = useState<TasksStateType>({
         [todolistID_1]: [
-            {id: v1(), title: "HTML&CSS", isDone: true},
-            {id: v1(), title: "JS", isDone: true},
-            {id: v1(), title: "ReactJS", isDone: false},
-            {id: v1(), title: "Rest API", isDone: false},
-            {id: v1(), title: "GraphQL", isDone: false},
+            {id: v1(), title: "Бойцовский клуб", isDone: true},
+            {id: v1(), title: "Крестный отец", isDone: true},
+            {id: v1(), title: "Исчезнувшая", isDone: false},
+            {id: v1(), title: "Пианист", isDone: false},
+            {id: v1(), title: "Адвокат дьявола", isDone: false},
         ],
         [todolistID_2]: [
-            {id: v1(), title: "Books", isDone: false},
-            {id: v1(), title: "Notebook", isDone: true},
-            {id: v1(), title: "Scooter", isDone: false},
-            {id: v1(), title: "Car", isDone: true},
-            {id: v1(), title: "BTC", isDone: false},
-        ]
+            {id: v1(), title: "Молоко", isDone: false},
+            {id: v1(), title: "Хлеб", isDone: true},
+            {id: v1(), title: "Сыр", isDone: false},
+            {id: v1(), title: "Творрог", isDone: true},
+            {id: v1(), title: "Торт", isDone: false},
+            {id: v1(), title: "Кофе", isDone: false},
+        ],
     })
 
     const removeTask = (taskID: string, todolistID: string) => {
@@ -136,11 +138,11 @@ function App() {
                         <Menu/>
                     </IconButton>
                     <Typography variant="h6">
-                        Todolists
+                        Списки
                     </Typography>
                     <Button
                         variant={'outlined'}
-                        color="inherit">Login</Button>
+                        color="inherit">Войти</Button>
                 </Toolbar>
             </AppBar>
             <Container fixed>

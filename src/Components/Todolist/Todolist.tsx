@@ -84,18 +84,18 @@ export function Todolist(props: PropsType) {
                 size={'small'}
                 variant={props.filter === 'all' ? 'outlined' : 'contained'}
                 color={props.filter === 'all' ? 'secondary' : 'primary'}
-                onClick={onFilterClickHandler('all')}>All</Button>
+                onClick={onFilterClickHandler('all')}>Все</Button>
             <Button
                 style={{'margin': '0 5px'}}
                 size={'small'}
                 variant={props.filter === 'active' ? 'outlined' : 'contained'}
                 color={props.filter === 'active' ? 'secondary' : 'primary'}
-                onClick={onFilterClickHandler('active')}>Active</Button>
+                onClick={onFilterClickHandler('active')}>Активные</Button>
             <Button
                 size={'small'}
                 variant={props.filter === 'completed' ? 'outlined' : 'contained'}
                 color={props.filter === 'completed' ? 'secondary' : 'primary'}
-                onClick={onFilterClickHandler('completed')}>Completed</Button>
+                onClick={onFilterClickHandler('completed')}>Выполненые</Button>
         </div>
     </div>
 }
