@@ -6,7 +6,9 @@ import {AddBox} from "@material-ui/icons";
 type AddItemFormType = {
     addItem: (title: string) => void
 }
-const AddItemForm: React.FC<AddItemFormType> = (props) => {
+const AddItemForm: React.FC<AddItemFormType> = React.memo((props) => {
+    console.log('addItemForm');
+
     let [title, setTitle] = useState("")
     const [error, setError] = useState<boolean>(false)
     const errorMessage = 'Title is required'
@@ -41,15 +43,15 @@ const AddItemForm: React.FC<AddItemFormType> = (props) => {
                 variant={'outlined'}
                 error={error}
                 helperText={error && errorMessage}
-                />
+            />
             {/*Кнопки добавление нового тудулиста и новых тасок*/}
             <IconButton
                 color={'primary'}
                 onClick={addItem}>
-                <AddBox />
+                <AddBox/>
             </IconButton>
         </div>
     );
-};
+})
 
 export default AddItemForm;
