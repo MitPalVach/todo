@@ -55,7 +55,6 @@ const AppWithReducer = () => {
 
     const todolistsComponents = todolists.map(tl => {
         let tasksForTodolist = tasks[tl.id];
-
         return (
             <Grid item key={tl.id}>
                 <Paper style={{padding: '20px'}} elevation={5}>

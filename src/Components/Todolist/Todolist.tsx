@@ -29,7 +29,7 @@ type PropsType = {
 export const Todolist = React.memo((props: PropsType) => {
     console.log('todolist');
 
-    const addTask = useCallback((title: string) => {
+    const addTask = useCallback((title: string) => {//a
         props.addTask(title, props.todolistId)
     }, [props]);
     const onFilterClickHandler = useCallback((filterValue: FilterValuesType) => () =>

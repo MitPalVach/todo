@@ -1,6 +1,6 @@
 import {TasksStateType} from "../Components/App/App";
 import {v1} from 'uuid';
-import {AddTodolistAT, RemoveTodolistsAT} from "./todolistReducer";
+import {AddTodolistAT, RemoveTodolistsAT, todolistId_1, todolistId_2} from "./todolistReducer";
 
 
 export type RemoveTaskActionType = {
@@ -27,21 +27,21 @@ export type ChangeTaskTitleActionType = {
 }
 
 const initialState: TasksStateType = {
-    // [todolistId_1]: [
-    //     {id: v1(), title: "Бойцовский клуб", isDone: true},
-    //     {id: v1(), title: "Крестный отец", isDone: true},
-    //     {id: v1(), title: "Исчезнувшая", isDone: false},
-    //     {id: v1(), title: "Пианист", isDone: false},
-    //     {id: v1(), title: "Адвокат дьявола", isDone: false},
-    // ],
-    // [todolistId_2]: [
-    //     {id: v1(), title: "Молоко", isDone: false},
-    //     {id: v1(), title: "Хлеб", isDone: true},
-    //     {id: v1(), title: "Сыр", isDone: false},
-    //     {id: v1(), title: "Сметана", isDone: true},
-    //     {id: v1(), title: "Торт", isDone: false},
-    //     {id: v1(), title: "Кофе", isDone: false},
-    // ],
+    [todolistId_1]: [
+        {id: v1(), title: "Бойцовский клуб", isDone: true},
+        {id: v1(), title: "Крестный отец", isDone: true},
+        {id: v1(), title: "Исчезнувшая", isDone: false},
+        {id: v1(), title: "Пианист", isDone: false},
+        {id: v1(), title: "Адвокат дьявола", isDone: false},
+    ],
+    [todolistId_2]: [
+        {id: v1(), title: "Молоко", isDone: false},
+        {id: v1(), title: "Хлеб", isDone: true},
+        {id: v1(), title: "Сыр", isDone: false},
+        {id: v1(), title: "Сметана", isDone: true},
+        {id: v1(), title: "Торт", isDone: false},
+        {id: v1(), title: "Кофе", isDone: false},
+    ],
 }
 type ActionsType = RemoveTaskActionType | AddTaskActionType
     | ChangeTaskStatusActionType | ChangeTaskTitleActionType

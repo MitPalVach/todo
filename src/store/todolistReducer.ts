@@ -25,8 +25,8 @@ export type changeTodolistFilterAT = {
 export const todolistId_1 = v1()
 export const todolistId_2 = v1()
 const initialState: Array<TodolistType> = [
-    // {id: todolistId_1, title: 'Список фильмов', filter: 'all'},
-    // {id: todolistId_2, title: 'Покупки', filter: 'all'},
+    {id: todolistId_1, title: 'Список фильмов', filter: 'all'},
+    {id: todolistId_2, title: 'Покупки', filter: 'all'},
 ]
 export type ActionsType =
     RemoveTodolistsAT | AddTodolistAT |
