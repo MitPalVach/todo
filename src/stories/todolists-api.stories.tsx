@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 import {todolistsApi} from "../api/todolist-api";
 
 
-
 export default {
     title: 'API'
 }
@@ -17,10 +16,10 @@ export const GetTodolists = () => {
             })
     }
     return <div>
-        {JSON.stringify(state)}
         <div>
             <button onClick={getTodo}>show Todolists</button>
         </div>
+        {JSON.stringify(state)}
     </div>
 }
 

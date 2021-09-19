@@ -78,5 +78,4 @@ type UpdateTaskType<T = {}> = {
     resultCode: number
     messages: string[]
     data: T
-
 }
