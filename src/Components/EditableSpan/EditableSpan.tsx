@@ -1,35 +1,29 @@
 import React, {ChangeEvent, useState} from 'react';
-import {TextField} from "@material-ui/core";
+import {TextField} from '@material-ui/core';
 
-
-type EditableSpanType = {
-    title: string
-    changeTitle: (title: string) => void
+type EditableSpanPropsType = {
+    value: string
+    onChange: (newValue: string) => void
 }
-const EditableSpan: React.FC<EditableSpanType> = (props) => {
-    const [editMode, setEditMode] = useState<boolean>(false)
-    const [title, setTitle] = useState<string>(props.title)
 
-    const onEditMode = () => setEditMode(true)
-    const offEditMode = () => {
-        props.changeTitle(title)
-        setEditMode(false)
+export const EditableSpan = React.memo(function (props: EditableSpanPropsType) {
+    console.log("EditableSpan called");
+    let [editMode, setEditMode] = useState(false);
+    let [title, setTitle] = useState(props.value);
+
+    const activateEditMode = () => {
+        setEditMode(true);
+        setTitle(props.value);
     }
-
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const activateViewMode = () => {
+        setEditMode(false);
+        props.onChange(title);
+    }
+    const changeTitle = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value)
     }
-// Возможность изменить название тасок и тудулистов
-    return (
-        editMode ? (
-                <TextField
-                    autoFocus
-                    value={title}
-                    onBlur={offEditMode}
-                    onChange={onChangeHandler}
-                />)
-            : (<span onDoubleClick={onEditMode}>{props.title}</span>)
-    )
-};
 
-export default EditableSpan;
+    return editMode
+        ?    <TextField value={title} onChange={changeTitle} autoFocus onBlur={activateViewMode} />
+        : <span onDoubleClick={activateEditMode}>{props.value}</span>
+});
