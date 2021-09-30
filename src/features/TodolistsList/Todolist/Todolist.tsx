@@ -1,14 +1,15 @@
-import React, {useCallback, useEffect} from 'react'
-import {Button, IconButton} from '@material-ui/core'
-import {Delete} from '@material-ui/icons'
-import {useDispatch} from "react-redux";
-import {FilterValuesType} from "../../store/todolistReducer";
-import {TaskStatuses, TaskType} from "../../api/todolist-api";
-import {fetchTasksTC} from "../../store/tasksReducer";
-import {EditableSpan} from "../EditableSpan/EditableSpan";
-import AddItemForm from "../AddItemForm/AddItemForm";
-import {Task} from "../Task/Task";
+import React, { useCallback, useEffect } from 'react'
+import { AddItemForm } from '../../../components/AddItemForm/AddItemForm'
+import { EditableSpan } from '../../../components/EditableSpan/EditableSpan'
+import { Task } from './Task/Task'
+import { TaskStatuses, TaskType } from '../../../api/todolists-api'
+import { FilterValuesType } from '../todolists-reducer'
+import { useDispatch } from 'react-redux'
+import { fetchTasksTC } from '../tasks-reducer'
 
+import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
+import { Delete } from '@mui/icons-material';
 
 type PropsType = {
     id: string
@@ -22,13 +23,16 @@ type PropsType = {
     removeTodolist: (id: string) => void
     changeTodolistTitle: (id: string, newTitle: string) => void
     filter: FilterValuesType
+
 }
 
 export const Todolist = React.memo(function (props: PropsType) {
-    const dispatch = useDispatch()
+    console.log('Todolist called')
 
+    const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(fetchTasksTC(props.id))
+        const thunk = fetchTasksTC(props.id)
+        dispatch(thunk)
     }, [])
 
     const addTask = useCallback((title: string) => {
@@ -75,15 +79,16 @@ export const Todolist = React.memo(function (props: PropsType) {
         <div style={{paddingTop: '10px'}}>
             <Button variant={props.filter === 'all' ? 'outlined' : 'text'}
                     onClick={onAllClickHandler}
-                    color={'default'}>Все
+                    color={'inherit'}
+            >All
             </Button>
             <Button variant={props.filter === 'active' ? 'outlined' : 'text'}
                     onClick={onActiveClickHandler}
-                    color={'primary'}>Активные
+                    color={'primary'}>Active
             </Button>
             <Button variant={props.filter === 'completed' ? 'outlined' : 'text'}
                     onClick={onCompletedClickHandler}
-                    color={'secondary'}>Выполненые
+                    color={'secondary'}>Completed
             </Button>
         </div>
     </div>
