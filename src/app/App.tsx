@@ -13,6 +13,7 @@ import {AppRootStateType} from "./store";
 import {RequestStatusType} from "./app-reducer";
 import {useSelector} from "react-redux";
 import {ErrorSnackbar} from "../components/ErrorSnackbar/ErrorSnackbar";
+import {headerBtn, headerTitle} from "./styles";
 
 
 function App() {
@@ -21,14 +22,14 @@ function App() {
     return (
         <div className="App">
             <AppBar position="static">
-                <Toolbar>
+                <Toolbar style={headerTitle}>
                     <IconButton edge="start" color="inherit" aria-label="menu">
                         <Menu/>
                     </IconButton>
                     <Typography variant="h6">
-                        News
+                        Списки
                     </Typography>
-                    <Button color="inherit">Login</Button>
+                    <Button color="inherit" style={headerBtn}>Войти</Button>
                 </Toolbar>
             </AppBar>
             {status === 'loading' && <LinearProgress color="success"/>}

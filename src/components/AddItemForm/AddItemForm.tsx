@@ -1,14 +1,15 @@
-import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
+import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
-import { AddBox } from '@mui/icons-material';
+import {AddBox} from '@mui/icons-material';
+
 
 type AddItemFormPropsType = {
     addItem: (title: string) => void
 }
 
 export const AddItemForm = React.memo(function (props: AddItemFormPropsType) {
-    console.log('AddItemForm called')
+    // console.log('AddItemForm called')
 
     let [title, setTitle] = useState('')
     let [error, setError] = useState<string | null>(null)
@@ -18,7 +19,7 @@ export const AddItemForm = React.memo(function (props: AddItemFormPropsType) {
             props.addItem(title);
             setTitle('');
         } else {
-            setError('Title is required');
+            setError('Необходимо ввести название');
         }
     }
 
@@ -30,7 +31,7 @@ export const AddItemForm = React.memo(function (props: AddItemFormPropsType) {
         if (error !== null) {
             setError(null);
         }
-        if (e.charCode === 13) {
+        if (e.key === 'Enter') {
             addItem();
         }
     }
@@ -41,7 +42,7 @@ export const AddItemForm = React.memo(function (props: AddItemFormPropsType) {
                    value={title}
                    onChange={onChangeHandler}
                    onKeyPress={onKeyPressHandler}
-                   label="Title"
+                   label="Введите значение"
                    helperText={error}
         />
         <IconButton color="primary" onClick={addItem}>
